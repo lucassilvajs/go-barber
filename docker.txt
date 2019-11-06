@@ -1,0 +1,5 @@
+docker ps -- Lista containers rodando
+docker ps - a --Mostra todos os container
+docker stop {nome_container} -- para o container
+docker start {nome_container} -- Reiniciar container
+docker logs {nome_container}
