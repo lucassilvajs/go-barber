@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add nodemailer-express-handlebar
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js queue
 
 PATH: 
-  C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Users\Lucas\AppData\Local\Microsoft\WindowsApps;;C:\Users\Lucas\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Lucas\AppData\Roaming\npm;C:\Users\Lucas\AppData\Local\Yarn\bin
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Lucas\bin;C:\Users\Lucas\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Lucas\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Python27;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_231\bin;C:\Users\Lucas\AppData\Local\Microsoft\WindowsApps;C:\Users\Lucas\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Lucas\AppData\Roaming\npm;C:\Users\Lucas\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.19.1
@@ -14,17 +14,12 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/nodemailer-express-handlebar: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66035:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140564:22)
-      at Request.emit (events.js:210:5)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141536:10)
-      at Request.emit (events.js:210:5)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141458:12)
-      at Object.onceWrapper (events.js:299:28)
-      at IncomingMessage.emit (events.js:215:7)
-      at endReadableNT (_stream_readable.js:1183:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+  SyntaxError: C:\Users\Lucas\Documents\Projetos\go-barber\package.json: Unexpected token } in JSON at position 178
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:304:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:315:13
 
 npm manifest: 
   {
@@ -33,10 +28,12 @@ npm manifest:
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-      "dev": "nodemon src/server.js"
+      "dev": "nodemon src/server.js",
+      "queue": "nodemon src/queue.js",
     },
     "dependencies": {
       "bcryptjs": "^2.4.3",
+      "bee-queue": "^1.2.2",
       "date-fns": "^2.0.0-beta.5",
       "express": "^4.17.1",
       "express-handlebars": "^3.1.0",
@@ -44,6 +41,7 @@ npm manifest:
       "mongoose": "^5.7.8",
       "multer": "^1.4.2",
       "nodemailer": "^6.3.1",
+      "nodemailer-express-handlebars": "^3.1.0",
       "pg": "^7.12.1",
       "pg-hstore": "^2.3.3",
       "sequelize": "^5.21.1",
@@ -293,6 +291,14 @@ Lockfile:
     version "2.4.3"
     resolved "https://registry.yarnpkg.com/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
     integrity sha1-mrVie5PmBiH/fNrF2pczAn3x0Ms=
+  
+  bee-queue@^1.2.2:
+    version "1.2.2"
+    resolved "https://registry.yarnpkg.com/bee-queue/-/bee-queue-1.2.2.tgz#ad82226de14f42fed4b86b066b18c4829ffd3600"
+    integrity sha512-Nw6VXHkAdfnMEp5bdffTSZEBnHuZSoRLjwmurfaQp6xmcxP+XsaqKClH1/XLmoAkrOuW40j9mLGlsLR/25ljwQ==
+    dependencies:
+      promise-callbacks "^3.0.0"
+      redis "^2.7.1"
   
   binary-extensions@^1.0.0:
     version "1.13.1"
@@ -828,6 +834,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/dottie/-/dottie-2.0.1.tgz#697ad9d72004db7574d21f892466a3c285893659"
     integrity sha512-ch5OQgvGDK2u8pSZeSYAQaV/lczImd7pMJ7BcEPXmnFVjy4yJIzP6CsODJUTH8mg1tyH1Z2abOiuJO3DjZ/GBw==
   
+  double-ended-queue@^2.1.0-0:
+    version "2.1.0-0"
+    resolved "https://registry.yarnpkg.com/double-ended-queue/-/double-ended-queue-2.1.0-0.tgz#103d3527fd31528f40188130c841efdd78264e5c"
+    integrity sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=
+  
   duplexer3@^0.1.4:
     version "0.1.4"
     resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -877,7 +888,7 @@ Lockfile:
     dependencies:
       is-arrayish "^0.2.1"
   
-  es-abstract@^1.12.0, es-abstract@^1.7.0:
+  es-abstract@^1.12.0, es-abstract@^1.5.1, es-abstract@^1.7.0:
     version "1.16.0"
     resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.16.0.tgz#d3a26dc9c3283ac9750dca569586e976d9dcc06d"
     integrity sha512-xdQnfykZ9JMEiasTAJZJdMWCQ1Vm00NBw79/AWi7ELfZuuPCSOMDZbT9mkOfSctVtfhb+sAAzrm+j//GjjLHLg==
@@ -1144,7 +1155,7 @@ Lockfile:
       snapdragon "^0.8.1"
       to-regex "^3.0.1"
   
-  express-handlebars@^3.1.0:
+  express-handlebars@^3.0.0, express-handlebars@^3.1.0:
     version "3.1.0"
     resolved "https://registry.yarnpkg.com/express-handlebars/-/express-handlebars-3.1.0.tgz#c177ee9a81f6a2abada6b550b77b3e30c6bc0796"
     integrity sha512-7QlaXnSREMmN5P2o4gmpUZDfJlLtfBka9d6r7/ccXaU7rPp76odw9YYtwZYdIiha2JqwiaG6o2Wu6NZJQ0u7Fg==
@@ -2434,6 +2445,13 @@ Lockfile:
       semver "^5.3.0"
       tar "^4"
   
+  nodemailer-express-handlebars@^3.1.0:
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/nodemailer-express-handlebars/-/nodemailer-express-handlebars-3.1.0.tgz#e80da7528cfd30a8dd49c002642854edcab72c68"
+    integrity sha512-JLt+lAlo/D3TfpVnDY+imLHAAonX5L9FEHaczyiPxWCH259bsfxEjPSWl/rWgnvcoFT8uC/hwHi/I0ScFmHlIQ==
+    dependencies:
+      express-handlebars "^3.0.0"
+  
   nodemailer@^6.3.1:
     version "6.3.1"
     resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.3.1.tgz#2784beebac6b9f014c424c54dbdcc5c4d1221346"
@@ -2577,6 +2595,14 @@ Lockfile:
       es-abstract "^1.12.0"
       function-bind "^1.1.1"
       has "^1.0.3"
+  
+  object.getownpropertydescriptors@2.0.3:
+    version "2.0.3"
+    resolved "https://registry.yarnpkg.com/object.getownpropertydescriptors/-/object.getownpropertydescriptors-2.0.3.tgz#8758c846f5b407adab0f236e0986f14b051caa16"
+    integrity sha1-h1jIRvW0B62rDyNuCYbxSwUcqhY=
+    dependencies:
+      define-properties "^1.1.2"
+      es-abstract "^1.5.1"
   
   object.pick@^1.3.0:
     version "1.3.0"
@@ -2914,6 +2940,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
     integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
   
+  promise-callbacks@^3.0.0:
+    version "3.3.0"
+    resolved "https://registry.yarnpkg.com/promise-callbacks/-/promise-callbacks-3.3.0.tgz#34cb2c01cf1655a374cbbd613451b4a3d81c9bda"
+    integrity sha512-faGRUIKRzys4pD8DSluoEQQ4efMqEqtXMCH4rU2fy4V0HB5IzlEn25vbqEI5vmRBT8DjRL7sqQclna05hkfytg==
+    dependencies:
+      object.getownpropertydescriptors "2.0.3"
+  
   promise@^8.0.2:
     version "8.0.3"
     resolved "https://registry.yarnpkg.com/promise/-/promise-8.0.3.tgz#f592e099c6cddc000d538ee7283bb190452b0bf6"
@@ -3032,6 +3065,25 @@ Lockfile:
       graceful-fs "^4.1.11"
       micromatch "^3.1.10"
       readable-stream "^2.0.2"
+  
+  redis-commands@^1.2.0:
+    version "1.5.0"
+    resolved "https://registry.yarnpkg.com/redis-commands/-/redis-commands-1.5.0.tgz#80d2e20698fe688f227127ff9e5164a7dd17e785"
+    integrity sha512-6KxamqpZ468MeQC3bkWmCB1fp56XL64D4Kf0zJSwDZbVLLm7KFkoIcHrgRvQ+sk8dnhySs7+yBg94yIkAK7aJg==
+  
+  redis-parser@^2.6.0:
+    version "2.6.0"
+    resolved "https://registry.yarnpkg.com/redis-parser/-/redis-parser-2.6.0.tgz#52ed09dacac108f1a631c07e9b69941e7a19504b"
+    integrity sha1-Uu0J2srBCPGmMcB+m2mUHnoZUEs=
+  
+  redis@^2.7.1:
+    version "2.8.0"
+    resolved "https://registry.yarnpkg.com/redis/-/redis-2.8.0.tgz#202288e3f58c49f6079d97af7a10e1303ae14b02"
+    integrity sha512-M1OkonEQwtRmZv4tEWF2VgpG0JWJ8Fv1PhlgT5+B+uNq2cA3Rt1Yt/ryoR+vQNOQcIEgdCdfH0jr3bDpihAw1A==
+    dependencies:
+      double-ended-queue "^2.1.0-0"
+      redis-commands "^1.2.0"
+      redis-parser "^2.6.0"
   
   regenerator-runtime@^0.11.0:
     version "0.11.1"
